@@ -20,6 +20,8 @@ var app = builder.Build();
 app.UseCors(options =>
 {
     options.WithOrigins("http://localhost:3000");
+    options.WithOrigins("https://clever-melba-9799cb.netlify.app");
+    options.AllowAnyOrigin();
     options.AllowAnyMethod();
     options.AllowAnyHeader();
 });
