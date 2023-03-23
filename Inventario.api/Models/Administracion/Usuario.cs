@@ -10,6 +10,7 @@ namespace Inventario.api.Models.Administracion
         public string? Email { get; set; }
         public string? Contrasenia { get; set; }
         public string? UrlImagen { get; set; }
-        public EnumRol Rol { get; set; }
+        public string? NumeroTelefono { get; set; }
+        public string? Rol { get; set; }
     }
 }

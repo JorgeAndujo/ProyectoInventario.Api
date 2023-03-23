@@ -4,6 +4,7 @@ using Inventario.api;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventario.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230323051035_numTelefono-usuario")]
+    partial class numTelefonousuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,8 +58,8 @@ namespace Inventario.api.Migrations
                     b.Property<string>("NumeroTelefono")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rol")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Rol")
+                        .HasColumnType("int");
 
                     b.Property<string>("UrlImagen")
                         .HasColumnType("nvarchar(max)");
