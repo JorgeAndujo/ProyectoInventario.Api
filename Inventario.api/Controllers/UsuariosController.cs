@@ -1,4 +1,6 @@
-﻿using Inventario.api.Models.Administracion;
+﻿using Azure.Messaging;
+using Inventario.api.Helpers;
+using Inventario.api.Models.Administracion;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,9 +53,24 @@ namespace Inventario.api.Controllers
         {
             try
             {
-                context.Usuarios.Add(usuario);
-                context.SaveChanges();
-                return CreatedAtRoute("GetUsuario", new { id = usuario.Id }, usuario);
+                var usuarioBd = context.Usuarios.Where(x => x.Email.Equals(usuario.Email) || x.NombreUsuario.Equals(usuario.NombreUsuario)).FirstOrDefault();
+                if (usuarioBd != null && usuarioBd.Id != usuario.Id)
+                {
+                    if(usuarioBd.NombreUsuario == usuario.NombreUsuario)
+                    {
+                        return BadRequest("USERNAME_ALREADY_EXISTS");
+                    }
+                    else
+                    {
+                        return BadRequest("EMAIL_ALREADY_EXISTS");
+                    }
+                }
+                else
+                {
+                    context.Usuarios.Add(usuario);
+                    context.SaveChanges();
+                    return CreatedAtRoute("GetUsuario", new { id = usuario.Id }, usuario);
+                }
             }
             catch (Exception ex)
             {
@@ -65,14 +82,29 @@ namespace Inventario.api.Controllers
         // PUT api/<UsuariosController>/5
         [HttpPut("{id}")]
         public ActionResult Put(Guid id, [FromBody] Usuario usuario)
-        {
+        {          
             try
             {
                 if(usuario.Id == id)
                 {
-                    context.Entry(usuario).State = EntityState.Modified;
-                    context.SaveChanges();
-                    return CreatedAtRoute("GetUsuario", new { id = usuario.Id }, usuario);
+                    var usuarioBd = context.Usuarios.Where(x => x.Email.Equals(usuario.Email) || x.NombreUsuario.Equals(usuario.NombreUsuario)).FirstOrDefault();
+                    if (usuarioBd != null && usuarioBd.Id != usuario.Id)
+                    {
+                        if (usuarioBd.NombreUsuario == usuario.NombreUsuario)
+                        {
+                            return BadRequest("USERNAME_ALREADY_EXISTS");
+                        }
+                        else
+                        {
+                            return BadRequest("EMAIL_ALREADY_EXISTS");
+                        }
+                    }
+                    else
+                    {
+                        context.Entry(usuario).State = EntityState.Modified;
+                        context.SaveChanges();
+                        return CreatedAtRoute("GetUsuario", new { id = usuario.Id }, usuario);
+                    }
                 }
                 else
                 {
@@ -126,6 +158,24 @@ namespace Inventario.api.Controllers
             {
 
                 return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("recoverPassword/{email}")]
+        public async void RecoverPassword(string email)
+        {
+            try
+            {
+                Email oEmail = new Email();
+                var usuario = context.Usuarios.Where(x => x.Email.ToUpper() == email.ToUpper()).FirstOrDefault();
+                if (usuario != null)
+                {
+                    await oEmail.SendEmail(usuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
         }
 

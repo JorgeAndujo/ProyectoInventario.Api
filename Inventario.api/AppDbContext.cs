@@ -10,5 +10,7 @@ namespace Inventario.api
         
         }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Proveedor> Proveedores { get; set; }
+        public DbSet<Producto> Productos { get; set; }
     }
 }
