@@ -52,9 +52,24 @@ namespace Inventario.api.Controllers
         {
             try
             {
-                context.Productos.Add(producto);
-                context.SaveChanges();
-                return CreatedAtRoute("GetProducto", new { id = producto.Id }, producto);
+                var prodBd = context.Productos.Where(x => x.Clave.Equals(producto.Clave) || x.Nombre.Equals(producto.Nombre)).FirstOrDefault();
+                if (prodBd != null && prodBd.Id != producto.Id)
+                {
+                    if (prodBd.Clave == producto.Clave)
+                    {
+                        return BadRequest("CLAVE_ALREADY_EXISTS");
+                    }
+                    else
+                    {
+                        return BadRequest("PRODUCTNAME_ALREADY_EXISTS");
+                    }
+                }
+                else
+                {
+                    context.Productos.Add(producto);
+                    context.SaveChanges();
+                    return CreatedAtRoute("GetProducto", new { id = producto.Id }, producto);
+                }
             }
             catch (Exception ex)
             {

@@ -36,8 +36,8 @@ namespace Inventario.api.Controllers
         {
             try
             {
-                var usuario = context.Proveedores.Where(x => x.Id == id).FirstOrDefault();
-                return Ok(usuario);
+                var proveedor = context.Proveedores.Where(x => x.Id == id).FirstOrDefault();
+                return Ok(proveedor);
             }
             catch (Exception ex)
             {
