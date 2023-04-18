@@ -22,7 +22,7 @@ namespace Inventario.api.Controllers
         {
             try
             {
-                return Ok(context.Productos.ToList());
+                return Ok(context.Productos.Include(x => x.Proveedor).ToList());
 
             }
             catch (Exception ex)
