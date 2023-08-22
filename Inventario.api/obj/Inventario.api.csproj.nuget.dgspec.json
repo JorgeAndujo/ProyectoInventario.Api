@@ -1,21 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jorge\\source\\repos\\Inventario.api\\Inventario.api\\Inventario.api.csproj": {}
+    "C:\\InventarioSM\\ProyectoInventario.Api\\Inventario.api\\Inventario.api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jorge\\source\\repos\\Inventario.api\\Inventario.api\\Inventario.api.csproj": {
+    "C:\\InventarioSM\\ProyectoInventario.Api\\Inventario.api\\Inventario.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jorge\\source\\repos\\Inventario.api\\Inventario.api\\Inventario.api.csproj",
+        "projectUniqueName": "C:\\InventarioSM\\ProyectoInventario.Api\\Inventario.api\\Inventario.api.csproj",
         "projectName": "Inventario.api",
-        "projectPath": "C:\\Users\\Jorge\\source\\repos\\Inventario.api\\Inventario.api\\Inventario.api.csproj",
-        "packagesPath": "C:\\Users\\Jorge\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jorge\\source\\repos\\Inventario.api\\Inventario.api\\obj\\",
+        "projectPath": "C:\\InventarioSM\\ProyectoInventario.Api\\Inventario.api\\Inventario.api.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\InventarioSM\\ProyectoInventario.Api\\Inventario.api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Jorge\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -74,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
